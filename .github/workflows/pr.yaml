@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: ExifPR
-      uses: xryuseix/exifpr@0.2
+      uses: xryuseix/exifpr@1.0
       with:
         target_ext: .png .jpeg .jpg .gif .bmp .pdf .mp4 .mp3 .wav
         repository: ${{ github.repository }}
