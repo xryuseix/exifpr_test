@@ -18,8 +18,10 @@ jobs:
         id: pr_number
         run: |
           if [ "${{ github.event.issue.pull_request }}" != "null" ]; then
+            echo "A", ${{ github.event.issue.pull_request.number }}, "A"
             echo "PR_NUMBER=${{ github.event.issue.pull_request.number }}" >> $GITHUB_ENV
           else
+            echo "B", ${{ github.event.comment.issue.number }}, "B"
             echo "PR_NUMBER=${{ github.event.comment.issue.number }}" >> $GITHUB_ENV
           fi
 
