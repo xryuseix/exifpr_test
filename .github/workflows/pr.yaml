@@ -9,14 +9,14 @@ on:
 
 jobs:
   exifpr:
-    if: (github.event.issue.pull_request != null) && github.event.comment.body == '!github exifpr'
+    if: (github.event.issue.pull_request != null) || github.event.comment.body == '@github exifpr'
     runs-on: ubuntu-latest
 
     steps:
     - name: Set Added Files
       id: added_files
       run: |
-        echo "::set-output name=added_files::$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} --name-only --diff-filter=A)
+        echo "added_files=$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} --name-only --diff-filter=A -- *)" >> $GITHUB_OUTPUT
 
     - uses: actions/checkout@v4
 
