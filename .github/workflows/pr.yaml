@@ -28,8 +28,9 @@ jobs:
           elif [[ "${{ github.event_name }}" == "issue_comment" ]]; then
             echo "PR_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
           fi
+      - name: debug
+        run: |
           echo "PR_NUMBER=${{ env.PR_NUMBER }}"
-
       - name: ExifPR
         uses: xryuseix/exifpr@v2.1
         with:
