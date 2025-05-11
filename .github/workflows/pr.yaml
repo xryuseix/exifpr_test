@@ -40,7 +40,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.env.BRANCH_NAME }}
+          ref: ${{ env.BRANCH_NAME }}
       - name: ExifPR
         uses: xryuseix/exifpr@v2.1.2
         with:
