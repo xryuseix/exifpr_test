@@ -36,6 +36,8 @@ jobs:
             BRANCH_NAME=$(gh pr view ${{ env.PR_NUMBER }} --json headRefName --jq .headRefName --repo ${{ github.repository }})
             echo "BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.env.BRANCH_NAME }}
@@ -44,5 +46,6 @@ jobs:
         with:
           target_ext: .png .jpeg .jpg .gif .bmp .pdf .mp4 .mp3 .wav
           repository: ${{ github.repository }}
+          pr_number: ${{ env.PR_NUMBER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
