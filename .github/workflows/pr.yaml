@@ -14,19 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set Added Files
-      id: added_files
-      run: |
-        echo ${GITHUB_BASE_REF}
-        echo ${GITHUB_HEAD_REF}
-        echo "added_files=$(git diff ${GITHUB_BASE_REF}..${GITHUB_HEAD_REF} --name-only --diff-filter=A)" >> $GITHUB_OUTPUT
-
     - name: ExifPR
-      uses: xryuseix/exifpr@v2.0
+      uses: xryuseix/exifpr@v2.1
       with:
         target_ext: .png .jpeg .jpg .gif .bmp .pdf .mp4 .mp3 .wav
-        added_files: ${{ steps.check_added_files.outputs.added_files }}
         repository: ${{ github.repository }}
         pr_number: ${{ github.event.pull_request.number }}
       env:
