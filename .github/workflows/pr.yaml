@@ -13,12 +13,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: ExifPR
-      uses: xryuseix/exifpr@v2.1
-      with:
-        target_ext: .png .jpeg .jpg .gif .bmp .pdf .mp4 .mp3 .wav
-        repository: ${{ github.repository }}
-        pr_number: ${{ github.event.pull_request.number }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+      - name: Set PR number
+        id: pr_number
+        run: |
+          if [ "${{ github.event.issue.pull_request }}" != "null" ]; then
+            echo "PR_NUMBER=${{ github.event.issue.pull_request.number }}" >> $GITHUB_ENV
+          else
+            echo "PR_NUMBER=${{ github.event.comment.issue.number }}" >> $GITHUB_ENV
+          fi
+
+      - name: ExifPR
+        uses: xryuseix/exifpr@v2.1
+        with:
+          target_ext: .png .jpeg .jpg .gif .bmp .pdf .mp4 .mp3 .wav
+          repository: ${{ github.repository }}
+          pr_number: ${{ env.PR_NUMBER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
