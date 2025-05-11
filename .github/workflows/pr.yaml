@@ -16,7 +16,7 @@ jobs:
     - name: Set Added Files
       id: added_files
       run: |
-        echo "added_files=$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} --name-only --diff-filter=A)" >> $GITHUB_OUTPUT
+        echo "added_files=$(git diff origin/${GITHUB_BASE_REF}..origin/${GITHUB_HEAD_REF} --name-only --diff-filter=A -- *)" >> $GITHUB_OUTPUT
 
     - uses: actions/checkout@v4
 
