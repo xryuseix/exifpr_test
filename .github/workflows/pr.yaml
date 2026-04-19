@@ -50,7 +50,7 @@ jobs:
         with:
           ref: ${{ env.BRANCH_NAME }}
       - name: ExifPR
-        uses: xryuseix/exifpr@3f7f38b5c97d5b0c16954e68d45f8c336cb71572 # v2.2.0
+        uses: xryuseix/exifpr@7bbd9afa272b47314f1cafec8b3cf773f30c44df # v2.3.0
         with:
           target_ext: .png .jpeg .jpg .gif .bmp .pdf .mp4 .mp3 .wav
           repository: ${{ github.repository }}
